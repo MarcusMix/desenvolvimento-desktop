@@ -28,9 +28,7 @@ public class Principal extends JFrame {
 	private JTextField indexArray;
 	private JTextField logInput;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,9 +42,7 @@ public class Principal extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Principal() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -201,7 +197,7 @@ public class Principal extends JFrame {
 		
 		JButton cancelButton = new JButton("Cancelar");
 		cancelButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		cancelButton.setBackground(new Color(255, 0, 0));
+		cancelButton.setBackground(new Color(189, 42, 46));
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Principal.this.dispose();
