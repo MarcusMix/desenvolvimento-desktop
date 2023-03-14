@@ -77,25 +77,23 @@ public class Principal extends JFrame {
 		cadastrarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
 					logInput.setText("Nome não pode ficar vazio!");
-				} else {
+				} else if (emailInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("E-mail não pode ficar vazio!");
+				} else  {
 					logInput.setText("");
 					String nomeConvertido = String.valueOf(nomeInput.getText());
 					nomes.add(nomeConvertido);
-				}
-				
-				if (emailInput.getText().isBlank()) {
-					logInput.setText("E-mail pode ficar vazio!");
-				} else {
 					logInput.setText("");
 					String emailConvertido = String.valueOf(emailInput.getText());
 					emails.add(emailConvertido);
+					logInput.setForeground(Color.decode("#03A64A"));
+					logInput.setText("Cadastrado com sucesso!");
+					System.out.println("LOG: nome adicionado!" + nomes);
 				}
 				
-				
-				
-				
-				System.out.println("LOG: nome adicionado!" + nomes);
 				indexArray.setText(Integer.toString(quantidade));
 				indexArray.setText(Integer.toString(quantidade));
 			}
@@ -109,7 +107,7 @@ public class Principal extends JFrame {
 		novoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
-					logInput.setText("Não pode ficar vazio!");
+					logInput.setText("Nome pode ficar vazio!");
 				} else {
 					logInput.setText("");
 					nomeInput.setText("");
@@ -119,7 +117,6 @@ public class Principal extends JFrame {
 					System.out.println("LOG: quantidade: " + quantidade);
 					nomeInput.requestFocus();
 				}
-				
 			}
 		});
 		novoButton.setBounds(172, 378, 89, 23);
@@ -144,6 +141,7 @@ public class Principal extends JFrame {
 				indexArray.setText(Integer.toString(quantidade));
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
+				emailInput.setText(nomes.get(quantidade));
 				System.out.println("LOG: Voltar index: " + quantidade);
 			}
 		});
@@ -163,18 +161,21 @@ public class Principal extends JFrame {
 				} else if(nomes.get(index).equals(nomes.size())) {
 					System.out.println("LOG: Impossível avançar");
 					return;
+				} else if (nomes.size() - quantidade == 0) {
+					System.out.println("LOG: Impossível avançar");
+					return;
 				} else if (nomes.size() - quantidade == 1) {
 					System.out.println("LOG: Impossível avançar");
 					return;
-				} else {
+				}
+				else {
 					quantidade++;
 				}
-
 				indexArray.setText(Integer.toString(quantidade));
-				
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
-				System.out.println("LOG: avançar" + quantidade);
+				emailInput.setText(nomes.get(quantidade));
+				System.out.println("LOG: Avançar index: " + quantidade);
 			}
 		});
 		avancarButton.setBounds(348, 378, 56, 23);
