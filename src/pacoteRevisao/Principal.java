@@ -63,6 +63,7 @@ public class Principal extends JFrame {
 		emailLabel.setBounds(10, 102, 46, 14);
 		contentPane.add(emailLabel);
 		setLocationRelativeTo(null);
+		setTitle("Programa do Marcus");
 	
 		
 		JButton cadastrarButton = new JButton("Cadastrar");
@@ -116,11 +117,14 @@ public class Principal extends JFrame {
 		JButton voltarButton = new JButton("<");
 		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(nomes.size() > quantidade) {
+				if(nomes.size() > quantidade && quantidade <= 0) {
 					System.out.print("DEU voltar merda!!!!");
-					quantidade--;
+					return;
 				} else if(nomes.size() == 0) {
 					System.out.print("tamanho menoor");
+					return;
+				} else if (nomes.size() < 0) {
+					System.out.print("merdinha");
 					return;
 				} else {
 					quantidade--;
@@ -137,11 +141,17 @@ public class Principal extends JFrame {
 		JButton avancarButton = new JButton(">");
 		avancarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(nomes.size() < quantidade) {
+				if(nomes.size() > quantidade && quantidade < 0) {
 					System.out.print("DEU MERDA!!!!");
 					return;
 				} else if (nomes.size() == 0) {
 					System.out.print("tamanho menoor");
+					return;
+				} else if(nomes.get(index).equals(nomes.size())) {
+					System.out.println("Deu merda q merdmap");
+					return;
+				} else if (nomes.size() - quantidade == 1) {
+					System.out.println("nao da");
 					return;
 				} else {
 					quantidade++;
