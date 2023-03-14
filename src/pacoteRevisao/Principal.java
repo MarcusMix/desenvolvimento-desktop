@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Font;
 
 public class Principal extends JFrame {
 
@@ -23,6 +24,7 @@ public class Principal extends JFrame {
 	int quantidade = 0;
 	int index;
 	public ArrayList<String> nomes = new ArrayList<String>();
+	public ArrayList<String> emails = new ArrayList<String>();
 	private JTextField indexArray;
 	private JTextField logInput;
 
@@ -50,16 +52,19 @@ public class Principal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel nomeLabel = new JLabel("Nome:");
+		nomeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		nomeLabel.setBounds(10, 24, 46, 14);
 		contentPane.add(nomeLabel);
 		
 		JLabel emailLabel = new JLabel("E-mail");
+		emailLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		emailLabel.setBounds(10, 102, 46, 14);
 		contentPane.add(emailLabel);
 		setLocationRelativeTo(null);
@@ -67,26 +72,30 @@ public class Principal extends JFrame {
 	
 		
 		JButton cadastrarButton = new JButton("Cadastrar");
+		cadastrarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		cadastrarButton.setBackground(new Color(50, 205, 50));
 		cadastrarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
-					logInput.setText("Não pode ficar vazio!");
+					logInput.setText("Nome não pode ficar vazio!");
 				} else {
 					logInput.setText("");
 					String nomeConvertido = String.valueOf(nomeInput.getText());
 					nomes.add(nomeConvertido);
 				}
 				
-//				else if (emailInput.getText().isBlank()) {
-//					emailInput.setText("Não pode ficar vazio!");
-//				}
+				if (emailInput.getText().isBlank()) {
+					logInput.setText("E-mail pode ficar vazio!");
+				} else {
+					logInput.setText("");
+					String emailConvertido = String.valueOf(emailInput.getText());
+					emails.add(emailConvertido);
+				}
 				
 				
-				String emailConvertido = String.valueOf(emailInput.getText());
 				
 				
-				System.out.println("NOME!!!!" + nomes);
-				System.out.println("INDEX!!!!" + index);
+				System.out.println("LOG: nome adicionado!" + nomes);
 				indexArray.setText(Integer.toString(quantidade));
 				indexArray.setText(Integer.toString(quantidade));
 			}
@@ -95,6 +104,8 @@ public class Principal extends JFrame {
 		contentPane.add(cadastrarButton);
 		
 		JButton novoButton = new JButton("Novo");
+		novoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		novoButton.setBackground(new Color(30, 144, 255));
 		novoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
@@ -105,7 +116,7 @@ public class Principal extends JFrame {
 					emailInput.setText("");
 					quantidade++;
 					indexArray.setText(Integer.toString(quantidade));
-					System.out.println(quantidade);
+					System.out.println("LOG: quantidade: " + quantidade);
 					nomeInput.requestFocus();
 				}
 				
@@ -115,16 +126,17 @@ public class Principal extends JFrame {
 		contentPane.add(novoButton);
 		
 		JButton voltarButton = new JButton("<");
+		voltarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomes.size() > quantidade && quantidade <= 0) {
-					System.out.print("DEU voltar merda!!!!");
+					System.out.println("LOG: Impossível voltar");
 					return;
 				} else if(nomes.size() == 0) {
-					System.out.print("tamanho menoor");
+					System.out.println("LOG: Impossível voltar");
 					return;
 				} else if (nomes.size() < 0) {
-					System.out.print("merdinha");
+					System.out.println("LOG: Impossível voltar");
 					return;
 				} else {
 					quantidade--;
@@ -132,26 +144,27 @@ public class Principal extends JFrame {
 				indexArray.setText(Integer.toString(quantidade));
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
-				System.out.print("voltar" + quantidade);
+				System.out.println("LOG: Voltar index: " + quantidade);
 			}
 		});
 		voltarButton.setBounds(282, 378, 56, 23);
 		contentPane.add(voltarButton);
 		
 		JButton avancarButton = new JButton(">");
+		avancarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		avancarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomes.size() > quantidade && quantidade < 0) {
-					System.out.print("DEU MERDA!!!!");
+					System.out.println("LOG: Impossível avançar");
 					return;
 				} else if (nomes.size() == 0) {
-					System.out.print("tamanho menoor");
+					System.out.println("LOG: Impossível avançar");
 					return;
 				} else if(nomes.get(index).equals(nomes.size())) {
-					System.out.println("Deu merda q merdmap");
+					System.out.println("LOG: Impossível avançar");
 					return;
 				} else if (nomes.size() - quantidade == 1) {
-					System.out.println("nao da");
+					System.out.println("LOG: Impossível avançar");
 					return;
 				} else {
 					quantidade++;
@@ -161,28 +174,33 @@ public class Principal extends JFrame {
 				
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
-				System.out.print("avançar" + quantidade);
+				System.out.println("LOG: avançar" + quantidade);
 			}
 		});
 		avancarButton.setBounds(348, 378, 56, 23);
 		contentPane.add(avancarButton);
 		
 		nomeInput = new JTextField();
+		nomeInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		nomeInput.setBounds(100, 21, 185, 20);
 		contentPane.add(nomeInput);
 		nomeInput.setColumns(10);
 		
 		emailInput = new JTextField();
+		emailInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		emailInput.setColumns(10);
 		emailInput.setBounds(100, 99, 185, 20);
 		contentPane.add(emailInput);
 		
 		indexArray = new JTextField();
+		indexArray.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		indexArray.setColumns(10);
 		indexArray.setBounds(397, 21, 95, 20);
 		contentPane.add(indexArray);
 		
 		JButton cancelButton = new JButton("Cancelar");
+		cancelButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		cancelButton.setBackground(new Color(255, 0, 0));
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Principal.this.dispose();
@@ -192,24 +210,29 @@ public class Principal extends JFrame {
 		contentPane.add(cancelButton);
 		
 		JLabel indexLabel = new JLabel("index");
+		indexLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		indexLabel.setBounds(341, 24, 46, 14);
 		contentPane.add(indexLabel);
 		
 		JLabel logLabel = new JLabel("log");
+		logLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		logLabel.setBounds(341, 76, 46, 14);
 		contentPane.add(logLabel);
 		
 		logInput = new JTextField();
+		logInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		logInput.setForeground(Color.RED);
 		logInput.setColumns(10);
 		logInput.setBounds(397, 73, 161, 20);
 		contentPane.add(logInput);
 		
 		JButton feitoButton = new JButton("Feito");
+		feitoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		feitoButton.setBackground(new Color(152, 251, 152));
 		feitoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Alunos dialog = new Alunos(nomes);
+					Alunos dialog = new Alunos(nomes, emails);
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e1) {
