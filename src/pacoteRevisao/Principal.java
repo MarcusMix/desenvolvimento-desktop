@@ -25,8 +25,10 @@ public class Principal extends JFrame {
 	int index;
 	public ArrayList<String> nomes = new ArrayList<String>();
 	public ArrayList<String> emails = new ArrayList<String>();
+	public ArrayList<String> notas = new ArrayList<String>();
 	private JTextField indexArray;
 	private JTextField logInput;
+	private JTextField notaInput;
 
 	
 	public static void main(String[] args) {
@@ -78,13 +80,27 @@ public class Principal extends JFrame {
 				} else if (emailInput.getText().isBlank()) {
 					logInput.setForeground(Color.decode("#BD2A2E"));
 					logInput.setText("E-mail não pode ficar vazio!");
+				} else if(notaInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("Nota não pode ficar vazio!");
 				} else  {
+					//limpando input
 					logInput.setText("");
+					
+					//convertendo nome
 					String nomeConvertido = String.valueOf(nomeInput.getText());
 					nomes.add(nomeConvertido);
-					logInput.setText("");
+					
+					//convertendo e-mail
 					String emailConvertido = String.valueOf(emailInput.getText());
 					emails.add(emailConvertido);
+					
+					
+					//convertendo nota
+					String notaConvertida = String.valueOf(notaInput.getText());
+					notas.add(notaConvertida);
+					
+					//confirmação
 					logInput.setForeground(Color.decode("#03A64A"));
 					logInput.setText("Cadastrado com sucesso!");
 					System.out.println("LOG: nome adicionado!" + nomes);
@@ -103,11 +119,19 @@ public class Principal extends JFrame {
 		novoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
-					logInput.setText("Nome pode ficar vazio!");
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("Nome não pode ficar vazio!");
+				} else if (emailInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("E-mail não pode ficar vazio!");
+				} else if(notaInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("Nota não pode ficar vazio!");
 				} else {
 					logInput.setText("");
 					nomeInput.setText("");
 					emailInput.setText("");
+					notaInput.setText("");
 					quantidade++;
 					indexArray.setText(Integer.toString(quantidade));
 					System.out.println("LOG: quantidade: " + quantidade);
@@ -137,7 +161,8 @@ public class Principal extends JFrame {
 				indexArray.setText(Integer.toString(quantidade));
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
-				emailInput.setText(nomes.get(quantidade));
+				emailInput.setText(emails.get(quantidade));
+				notaInput.setText(notas.get(quantidade));
 				System.out.println("LOG: Voltar index: " + quantidade);
 			}
 		});
@@ -170,7 +195,8 @@ public class Principal extends JFrame {
 				indexArray.setText(Integer.toString(quantidade));
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
-				emailInput.setText(nomes.get(quantidade));
+				emailInput.setText(emails.get(quantidade));
+				notaInput.setText(notas.get(quantidade));
 				System.out.println("LOG: Avançar index: " + quantidade);
 			}
 		});
@@ -229,7 +255,7 @@ public class Principal extends JFrame {
 		feitoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Alunos dialog = new Alunos(nomes, emails);
+					Alunos dialog = new Alunos(nomes, emails, notas);
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e1) {
@@ -239,5 +265,16 @@ public class Principal extends JFrame {
 		});
 		feitoButton.setBounds(522, 378, 89, 23);
 		contentPane.add(feitoButton);
+		
+		JLabel notaLabel = new JLabel("Nota:");
+		notaLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		notaLabel.setBounds(10, 182, 46, 14);
+		contentPane.add(notaLabel);
+		
+		notaInput = new JTextField();
+		notaInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		notaInput.setColumns(10);
+		notaInput.setBounds(100, 179, 185, 20);
+		contentPane.add(notaInput);
 	}
 }
