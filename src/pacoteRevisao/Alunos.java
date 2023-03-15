@@ -20,13 +20,14 @@ public class Alunos extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField alunosInput;
 	private JTextField emailInput;
+	private JTextField notasInput;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Alunos dialog = new Alunos(null, null);
+			Alunos dialog = new Alunos(null, null, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -37,8 +38,8 @@ public class Alunos extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Alunos(ArrayList<String> nomes, ArrayList<String> emails) {
-		setBounds(100, 100, 450, 300);
+	public Alunos(ArrayList<String> nomes, ArrayList<String> emails, ArrayList<String> notas) {
+		setBounds(100, 100, 500, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -46,7 +47,7 @@ public class Alunos extends JDialog {
 		{
 			alunosInput = new JTextField();
 			alunosInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-			alunosInput.setBounds(64, 41, 299, 55);
+			alunosInput.setBounds(24, 41, 439, 55);
 			contentPanel.add(alunosInput);
 			alunosInput.setColumns(10);
 			for(int i = 0; i < nomes.size(); i++) {
@@ -69,11 +70,28 @@ public class Alunos extends JDialog {
 			emailInput = new JTextField();
 			emailInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 			emailInput.setColumns(10);
-			emailInput.setBounds(64, 130, 299, 55);
+			emailInput.setBounds(24, 130, 439, 55);
 			contentPanel.add(emailInput);
 			for(int i = 0; i < emails.size(); i++) {
 				emailInput.setText(emailInput.getText()+ (i+1) + "°- " + emails.get(i) + " ");
 			}
+			{
+				notasInput = new JTextField();
+				notasInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+				notasInput.setColumns(10);
+				notasInput.setBounds(24, 234, 439, 55);
+				contentPanel.add(notasInput);
+			}
+			{
+				JLabel notasLabel = new JLabel("Notas:");
+				notasLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+				notasLabel.setBounds(84, 209, 46, 14);
+				contentPanel.add(notasLabel);
+				for(int i = 0; i < notas.size(); i++) {
+					notasInput.setText(notasInput.getText()+ (i+1) + "°- " + notas.get(i) + " ");
+				}
+			}
+			
 		}
 		setLocationRelativeTo(null);
 		{
