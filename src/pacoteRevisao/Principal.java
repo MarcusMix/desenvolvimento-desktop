@@ -15,20 +15,25 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField nomeInput;
 	private JTextField emailInput;
-	int quantidade = 0;
-	int index;
+	private JTextField notaInput;
+	private JTextField indexArray;
+	private JTextField logInput;
+	private int quantidade = 0;
+	private int index;
 	public ArrayList<String> nomes = new ArrayList<String>();
 	public ArrayList<String> emails = new ArrayList<String>();
 	public ArrayList<String> notas = new ArrayList<String>();
-	private JTextField indexArray;
-	private JTextField logInput;
-	private JTextField notaInput;
+
 
 	
 	public static void main(String[] args) {
@@ -50,21 +55,12 @@ public class Principal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
+		contentPane.setToolTipText("");
 		contentPane.setBackground(Color.LIGHT_GRAY);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(192, 192, 192), 0, true));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel nomeLabel = new JLabel("Nome:");
-		nomeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		nomeLabel.setBounds(10, 24, 46, 14);
-		contentPane.add(nomeLabel);
-		
-		JLabel emailLabel = new JLabel("E-mail");
-		emailLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		emailLabel.setBounds(10, 102, 46, 14);
-		contentPane.add(emailLabel);
 		setLocationRelativeTo(null);
 		setTitle("Programa do Marcus");
 	
@@ -105,8 +101,6 @@ public class Principal extends JFrame {
 					logInput.setText("Cadastrado com sucesso!");
 					System.out.println("LOG: nome adicionado!" + nomes);
 				}
-				
-				indexArray.setText(Integer.toString(quantidade));
 				indexArray.setText(Integer.toString(quantidade));
 			}
 		});
@@ -203,7 +197,9 @@ public class Principal extends JFrame {
 		avancarButton.setBounds(348, 378, 56, 23);
 		contentPane.add(avancarButton);
 		
+		//input's
 		nomeInput = new JTextField();
+		nomeInput.setToolTipText("");
 		nomeInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		nomeInput.setBounds(100, 21, 185, 20);
 		contentPane.add(nomeInput);
@@ -214,6 +210,19 @@ public class Principal extends JFrame {
 		emailInput.setColumns(10);
 		emailInput.setBounds(100, 99, 185, 20);
 		contentPane.add(emailInput);
+		
+		notaInput = new JTextField();
+		notaInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		notaInput.setColumns(10);
+		notaInput.setBounds(100, 179, 185, 20);
+		contentPane.add(notaInput);
+		
+		logInput = new JTextField();
+		logInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		logInput.setForeground(Color.RED);
+		logInput.setColumns(10);
+		logInput.setBounds(397, 73, 161, 20);
+		contentPane.add(logInput);
 		
 		indexArray = new JTextField();
 		indexArray.setFont(new Font("Ubuntu", Font.PLAIN, 11));
@@ -232,23 +241,6 @@ public class Principal extends JFrame {
 		cancelButton.setBounds(423, 378, 89, 23);
 		contentPane.add(cancelButton);
 		
-		JLabel indexLabel = new JLabel("index");
-		indexLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		indexLabel.setBounds(341, 24, 46, 14);
-		contentPane.add(indexLabel);
-		
-		JLabel logLabel = new JLabel("log");
-		logLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		logLabel.setBounds(341, 76, 46, 14);
-		contentPane.add(logLabel);
-		
-		logInput = new JTextField();
-		logInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		logInput.setForeground(Color.RED);
-		logInput.setColumns(10);
-		logInput.setBounds(397, 73, 161, 20);
-		contentPane.add(logInput);
-		
 		JButton feitoButton = new JButton("Feito");
 		feitoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		feitoButton.setBackground(new Color(152, 251, 152));
@@ -266,15 +258,36 @@ public class Principal extends JFrame {
 		feitoButton.setBounds(522, 378, 89, 23);
 		contentPane.add(feitoButton);
 		
-		JLabel notaLabel = new JLabel("Nota:");
-		notaLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		notaLabel.setBounds(10, 182, 46, 14);
-		contentPane.add(notaLabel);
+		//label's
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(250, 250, 210));
+		panel.setBounds(10, 11, 289, 196);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		notaInput = new JTextField();
-		notaInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		notaInput.setColumns(10);
-		notaInput.setBounds(100, 179, 185, 20);
-		contentPane.add(notaInput);
+		JLabel notaLabel = new JLabel("Nota:");
+		notaLabel.setBounds(10, 171, 46, 14);
+		panel.add(notaLabel);
+		notaLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		
+		JLabel emailLabel = new JLabel("E-mail");
+		emailLabel.setBounds(10, 92, 46, 14);
+		panel.add(emailLabel);
+		emailLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		
+		JLabel nomeLabel = new JLabel("Nome:");
+		nomeLabel.setBounds(10, 11, 46, 14);
+		panel.add(nomeLabel);
+		nomeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		
+		JLabel indexLabel = new JLabel("index");
+		indexLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		indexLabel.setBounds(341, 24, 46, 14);
+		contentPane.add(indexLabel);
+		
+		JLabel logLabel = new JLabel("log");
+		logLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		logLabel.setBounds(341, 76, 46, 14);
+		contentPane.add(logLabel);
 	}
 }
