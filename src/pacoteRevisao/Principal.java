@@ -25,16 +25,16 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 	private JTextField nomeInput;
 	private JTextField emailInput;
-	private JTextField notaInput;
+	private JTextField idadeInput;
 	private JTextField indexArray;
 	private JTextField logInput;
+	private JTextField telefoneInput;
 	private int quantidade = 0;
 	private int index;
 	public ArrayList<String> nomes = new ArrayList<String>();
 	public ArrayList<String> emails = new ArrayList<String>();
-	public ArrayList<String> notas = new ArrayList<String>();
-
-
+	public ArrayList<String> idades = new ArrayList<String>();
+	public ArrayList<String> telefones = new ArrayList<String>();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,7 +63,7 @@ public class Principal extends JFrame {
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		setTitle("Programa do Marcus");
-	
+		
 		
 		JButton cadastrarButton = new JButton("Cadastrar");
 		cadastrarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
@@ -76,9 +76,12 @@ public class Principal extends JFrame {
 				} else if (emailInput.getText().isBlank()) {
 					logInput.setForeground(Color.decode("#BD2A2E"));
 					logInput.setText("E-mail não pode ficar vazio!");
-				} else if(notaInput.getText().isBlank()) {
+				} else if(idadeInput.getText().isBlank()) {
 					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Nota não pode ficar vazio!");
+					logInput.setText("Idade não pode ficar vazio!");
+				} else if (telefoneInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("Telefone não pode ficar vazio!");
 				} else  {
 					//limpando input
 					logInput.setText("");
@@ -92,9 +95,13 @@ public class Principal extends JFrame {
 					emails.add(emailConvertido);
 					
 					
-					//convertendo nota
-					String notaConvertida = String.valueOf(notaInput.getText());
-					notas.add(notaConvertida);
+					//convertendo idade
+					String idadeConvertida = String.valueOf(idadeInput.getText());
+					idades.add(idadeConvertida);
+					
+					//convertendo telefone
+					String telefoneConvertido = String.valueOf(telefoneInput.getText());
+					telefones.add(telefoneConvertido);
 					
 					//confirmação
 					logInput.setForeground(Color.decode("#03A64A"));
@@ -118,14 +125,18 @@ public class Principal extends JFrame {
 				} else if (emailInput.getText().isBlank()) {
 					logInput.setForeground(Color.decode("#BD2A2E"));
 					logInput.setText("E-mail não pode ficar vazio!");
-				} else if(notaInput.getText().isBlank()) {
+				} else if(idadeInput.getText().isBlank()) {
 					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Nota não pode ficar vazio!");
+					logInput.setText("Idade não pode ficar vazio!");
+				} else if (telefoneInput.getText().isBlank()) {
+					logInput.setForeground(Color.decode("#BD2A2E"));
+					logInput.setText("Telefone não pode ficar vazio!");
 				} else {
 					logInput.setText("");
 					nomeInput.setText("");
 					emailInput.setText("");
-					notaInput.setText("");
+					idadeInput.setText("");
+					telefoneInput.setText("");
 					quantidade++;
 					indexArray.setText(Integer.toString(quantidade));
 					System.out.println("LOG: quantidade: " + quantidade);
@@ -156,7 +167,7 @@ public class Principal extends JFrame {
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
 				emailInput.setText(emails.get(quantidade));
-				notaInput.setText(notas.get(quantidade));
+				idadeInput.setText(idades.get(quantidade));
 				System.out.println("LOG: Voltar index: " + quantidade);
 			}
 		});
@@ -190,7 +201,7 @@ public class Principal extends JFrame {
 				nomes.get(quantidade);
 				nomeInput.setText(nomes.get(quantidade));
 				emailInput.setText(emails.get(quantidade));
-				notaInput.setText(notas.get(quantidade));
+				idadeInput.setText(idades.get(quantidade));
 				System.out.println("LOG: Avançar index: " + quantidade);
 			}
 		});
@@ -204,6 +215,7 @@ public class Principal extends JFrame {
 		nomeInput.setBounds(100, 21, 185, 20);
 		contentPane.add(nomeInput);
 		nomeInput.setColumns(10);
+		nomeInput.requestFocus();
 		
 		emailInput = new JTextField();
 		emailInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
@@ -211,11 +223,11 @@ public class Principal extends JFrame {
 		emailInput.setBounds(100, 99, 185, 20);
 		contentPane.add(emailInput);
 		
-		notaInput = new JTextField();
-		notaInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		notaInput.setColumns(10);
-		notaInput.setBounds(100, 179, 185, 20);
-		contentPane.add(notaInput);
+		idadeInput = new JTextField();
+		idadeInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		idadeInput.setColumns(10);
+		idadeInput.setBounds(100, 179, 185, 20);
+		contentPane.add(idadeInput);
 		
 		logInput = new JTextField();
 		logInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
@@ -229,6 +241,11 @@ public class Principal extends JFrame {
 		indexArray.setColumns(10);
 		indexArray.setBounds(397, 21, 95, 20);
 		contentPane.add(indexArray);
+		
+		telefoneInput = new JTextField();
+		telefoneInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		telefoneInput.setColumns(10);
+		telefoneInput.setBounds(91, 237, 188, 20);
 		
 		JButton cancelButton = new JButton("Cancelar");
 		cancelButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
@@ -247,7 +264,7 @@ public class Principal extends JFrame {
 		feitoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Alunos dialog = new Alunos(nomes, emails, notas);
+					Alunos dialog = new Alunos(nomes, emails, idades, telefones);
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e1) {
@@ -261,14 +278,14 @@ public class Principal extends JFrame {
 		//label's
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(250, 250, 210));
-		panel.setBounds(10, 11, 289, 196);
+		panel.setBounds(10, 11, 289, 283);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel notaLabel = new JLabel("Nota:");
-		notaLabel.setBounds(10, 171, 46, 14);
-		panel.add(notaLabel);
-		notaLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		JLabel idadeLabel = new JLabel("Idade:");
+		idadeLabel.setBounds(10, 171, 46, 14);
+		panel.add(idadeLabel);
+		idadeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		
 		JLabel emailLabel = new JLabel("E-mail");
 		emailLabel.setBounds(10, 92, 46, 14);
@@ -279,6 +296,15 @@ public class Principal extends JFrame {
 		nomeLabel.setBounds(10, 11, 46, 14);
 		panel.add(nomeLabel);
 		nomeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		
+		
+		
+		
+		JLabel telefoneLabel = new JLabel("Telefone:");
+		telefoneLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		telefoneLabel.setBounds(10, 240, 46, 14);
+		panel.add(telefoneLabel);
+		panel.add(telefoneInput);
 		
 		JLabel indexLabel = new JLabel("index");
 		indexLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
