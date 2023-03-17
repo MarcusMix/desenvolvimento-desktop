@@ -8,14 +8,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
@@ -48,9 +51,25 @@ public class Principal extends JFrame {
 			}
 		});
 	}
+	
+	public static void invocarJanelas(String message) {
+		Dialog dialogo = new Dialog(message);
+		dialogo.setLocationRelativeTo(null);
+		dialogo.setVisible(true);
+	}
+	
+	public static void invocarJanelasOk(String message) {
+		Dialog dialogo = new Dialog(message);
+		dialogo.setLocationRelativeTo(null);
+		dialogo.setVisible(true);
+		dialogo.setTitle("Sucesso!");
+	}
 
 	
-	public Principal() {
+	//construtor
+	public Principal()  {
+		
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 500);
@@ -71,21 +90,14 @@ public class Principal extends JFrame {
 		cadastrarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Nome não pode ficar vazio!");
+					invocarJanelas("Nome não pode ficar vazio!");
 				} else if (emailInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("E-mail não pode ficar vazio!");
+					invocarJanelas("E-mail não pode ficar vazio!");
 				} else if(idadeInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Idade não pode ficar vazio!");
+					invocarJanelas("Idade não pode ficar vazio!");
 				} else if (telefoneInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Telefone não pode ficar vazio!");
+					invocarJanelas("Telefone não pode ficar vazio!");
 				} else  {
-					//limpando input
-					logInput.setText("");
-					
 					//convertendo nome
 					String nomeConvertido = String.valueOf(nomeInput.getText());
 					nomes.add(nomeConvertido);
@@ -93,7 +105,6 @@ public class Principal extends JFrame {
 					//convertendo e-mail
 					String emailConvertido = String.valueOf(emailInput.getText());
 					emails.add(emailConvertido);
-					
 					
 					//convertendo idade
 					String idadeConvertida = String.valueOf(idadeInput.getText());
@@ -104,11 +115,12 @@ public class Principal extends JFrame {
 					telefones.add(telefoneConvertido);
 					
 					//confirmação
-					logInput.setForeground(Color.decode("#03A64A"));
-					logInput.setText("Cadastrado com sucesso!");
 					System.out.println("LOG: nome adicionado!" + nomes);
+					System.out.println("LOG: TELEFONE adicionado!" + telefones);
+					invocarJanelasOk("Cadastrado com sucesso!");
 				}
 				indexArray.setText(Integer.toString(quantidade));
+				
 			}
 		});
 		cadastrarButton.setBounds(40, 378, 118, 23);
@@ -117,22 +129,18 @@ public class Principal extends JFrame {
 		JButton novoButton = new JButton("Novo");
 		novoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		novoButton.setBackground(new Color(30, 144, 255));
+		novoButton.setEnabled(true);
 		novoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(nomeInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Nome não pode ficar vazio!");
+					invocarJanelas("Idade não pode ficar vazio!");
 				} else if (emailInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("E-mail não pode ficar vazio!");
+					invocarJanelas("E-mail não pode ficar vazio!");
 				} else if(idadeInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Idade não pode ficar vazio!");
+					invocarJanelas("Idade não pode ficar vazio!");
 				} else if (telefoneInput.getText().isBlank()) {
-					logInput.setForeground(Color.decode("#BD2A2E"));
-					logInput.setText("Telefone não pode ficar vazio!");
+					invocarJanelas("Telefone não pode ficar vazio!");
 				} else {
-					logInput.setText("");
 					nomeInput.setText("");
 					emailInput.setText("");
 					idadeInput.setText("");
@@ -141,6 +149,7 @@ public class Principal extends JFrame {
 					indexArray.setText(Integer.toString(quantidade));
 					System.out.println("LOG: quantidade: " + quantidade);
 					nomeInput.requestFocus();
+
 				}
 			}
 		});
@@ -168,6 +177,7 @@ public class Principal extends JFrame {
 				nomeInput.setText(nomes.get(quantidade));
 				emailInput.setText(emails.get(quantidade));
 				idadeInput.setText(idades.get(quantidade));
+				telefoneInput.setText(telefones.get(quantidade));
 				System.out.println("LOG: Voltar index: " + quantidade);
 			}
 		});
@@ -202,6 +212,7 @@ public class Principal extends JFrame {
 				nomeInput.setText(nomes.get(quantidade));
 				emailInput.setText(emails.get(quantidade));
 				idadeInput.setText(idades.get(quantidade));
+				telefoneInput.setText(telefones.get(quantidade));
 				System.out.println("LOG: Avançar index: " + quantidade);
 			}
 		});
@@ -229,20 +240,16 @@ public class Principal extends JFrame {
 		idadeInput.setBounds(100, 179, 185, 20);
 		contentPane.add(idadeInput);
 		
-		logInput = new JTextField();
-		logInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		logInput.setForeground(Color.RED);
-		logInput.setColumns(10);
-		logInput.setBounds(397, 73, 161, 20);
-		contentPane.add(logInput);
-		
 		indexArray = new JTextField();
 		indexArray.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		indexArray.setColumns(10);
 		indexArray.setBounds(397, 21, 95, 20);
 		contentPane.add(indexArray);
 		
+	
 		telefoneInput = new JTextField();
+		
+		
 		telefoneInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		telefoneInput.setColumns(10);
 		telefoneInput.setBounds(91, 237, 188, 20);
@@ -311,9 +318,5 @@ public class Principal extends JFrame {
 		indexLabel.setBounds(341, 24, 46, 14);
 		contentPane.add(indexLabel);
 		
-		JLabel logLabel = new JLabel("log");
-		logLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		logLabel.setBounds(341, 76, 46, 14);
-		contentPane.add(logLabel);
 	}
 }
