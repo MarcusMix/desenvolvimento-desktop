@@ -1,5 +1,6 @@
 package pacoteRevisao;
 
+//imports
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -25,12 +26,12 @@ import javax.swing.border.LineBorder;
 
 public class Principal extends JFrame {
 
+	//variáveis
 	private JPanel contentPane;
 	private JTextField nomeInput;
 	private JTextField emailInput;
 	private JTextField idadeInput;
 	private JTextField indexArray;
-	private JTextField logInput;
 	private JTextField telefoneInput;
 	private int quantidade = 0;
 	private int index;
@@ -39,6 +40,7 @@ public class Principal extends JFrame {
 	public ArrayList<String> idades = new ArrayList<String>();
 	public ArrayList<String> telefones = new ArrayList<String>();
 	
+	//main
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,6 +54,7 @@ public class Principal extends JFrame {
 		});
 	}
 	
+	//métodos
 	public static void invocarJanelas(String message) {
 		Dialog dialogo = new Dialog(message);
 		dialogo.setLocationRelativeTo(null);
@@ -64,26 +67,36 @@ public class Principal extends JFrame {
 		dialogo.setVisible(true);
 		dialogo.setTitle("Sucesso!");
 	}
+	
+	public static void clearFunction (
+			JTextField nomeInput, 
+			JTextField emailInput, 
+			JTextField idadeInput, 
+			JTextField telefoneInput
+			){
+		nomeInput.setText("");
+		emailInput.setText("");
+		idadeInput.setText("");
+		telefoneInput.setText("");
+	}
 
 	
 	//construtor
 	public Principal()  {
-		
-		
-		
+		//setup frame principal
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new LineBorder(new Color(192, 192, 192), 0, true));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		setTitle("Programa do Marcus");
 		
 		
+		//sign up button
 		JButton cadastrarButton = new JButton("Cadastrar");
 		cadastrarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		cadastrarButton.setBackground(new Color(50, 205, 50));
@@ -126,6 +139,7 @@ public class Principal extends JFrame {
 		cadastrarButton.setBounds(40, 378, 118, 23);
 		contentPane.add(cadastrarButton);
 		
+		//new button
 		JButton novoButton = new JButton("Novo");
 		novoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		novoButton.setBackground(new Color(30, 144, 255));
@@ -141,21 +155,18 @@ public class Principal extends JFrame {
 				} else if (telefoneInput.getText().isBlank()) {
 					invocarJanelas("Telefone não pode ficar vazio!");
 				} else {
-					nomeInput.setText("");
-					emailInput.setText("");
-					idadeInput.setText("");
-					telefoneInput.setText("");
+					clearFunction(nomeInput, emailInput, idadeInput, telefoneInput);
 					quantidade++;
 					indexArray.setText(Integer.toString(quantidade));
 					System.out.println("LOG: quantidade: " + quantidade);
 					nomeInput.requestFocus();
-
 				}
 			}
 		});
 		novoButton.setBounds(172, 378, 89, 23);
 		contentPane.add(novoButton);
 		
+		//back button
 		JButton voltarButton = new JButton("<");
 		voltarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		voltarButton.addActionListener(new ActionListener() {
@@ -184,6 +195,7 @@ public class Principal extends JFrame {
 		voltarButton.setBounds(282, 378, 56, 23);
 		contentPane.add(voltarButton);
 		
+		//next button
 		JButton avancarButton = new JButton(">");
 		avancarButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		avancarButton.addActionListener(new ActionListener() {
@@ -203,8 +215,7 @@ public class Principal extends JFrame {
 				} else if (nomes.size() - quantidade == 1) {
 					System.out.println("LOG: Impossível avançar");
 					return;
-				}
-				else {
+				} else {
 					quantidade++;
 				}
 				indexArray.setText(Integer.toString(quantidade));
@@ -218,6 +229,36 @@ public class Principal extends JFrame {
 		});
 		avancarButton.setBounds(348, 378, 56, 23);
 		contentPane.add(avancarButton);
+		
+		//cancel button
+		JButton cancelButton = new JButton("Cancelar");
+		cancelButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		cancelButton.setBackground(new Color(189, 42, 46));
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Principal.this.dispose();
+			}
+		});
+		cancelButton.setBounds(423, 378, 89, 23);
+		contentPane.add(cancelButton);
+		
+		//OK button
+		JButton feitoButton = new JButton("Feito");
+		feitoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+		feitoButton.setBackground(new Color(152, 251, 152));
+		feitoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Alunos dialog = new Alunos(nomes, emails, idades, telefones);
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		feitoButton.setBounds(522, 378, 89, 23);
+		contentPane.add(feitoButton);
 		
 		//input's
 		nomeInput = new JTextField();
@@ -245,42 +286,11 @@ public class Principal extends JFrame {
 		indexArray.setColumns(10);
 		indexArray.setBounds(397, 21, 95, 20);
 		contentPane.add(indexArray);
-		
-	
+				
 		telefoneInput = new JTextField();
-		
-		
 		telefoneInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		telefoneInput.setColumns(10);
 		telefoneInput.setBounds(91, 237, 188, 20);
-		
-		JButton cancelButton = new JButton("Cancelar");
-		cancelButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		cancelButton.setBackground(new Color(189, 42, 46));
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Principal.this.dispose();
-			}
-		});
-		cancelButton.setBounds(423, 378, 89, 23);
-		contentPane.add(cancelButton);
-		
-		JButton feitoButton = new JButton("Feito");
-		feitoButton.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-		feitoButton.setBackground(new Color(152, 251, 152));
-		feitoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					Alunos dialog = new Alunos(nomes, emails, idades, telefones);
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		feitoButton.setBounds(522, 378, 89, 23);
-		contentPane.add(feitoButton);
 		
 		//label's
 		JPanel panel = new JPanel();
@@ -304,9 +314,6 @@ public class Principal extends JFrame {
 		panel.add(nomeLabel);
 		nomeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		
-		
-		
-		
 		JLabel telefoneLabel = new JLabel("Telefone:");
 		telefoneLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		telefoneLabel.setBounds(10, 240, 46, 14);
@@ -317,6 +324,5 @@ public class Principal extends JFrame {
 		indexLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
 		indexLabel.setBounds(341, 24, 46, 14);
 		contentPane.add(indexLabel);
-		
 	}
 }
