@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Alunos extends JDialog {
 
@@ -23,6 +24,7 @@ public class Alunos extends JDialog {
 	private JTextField emailInput;
 	private JTextField idadeInput;
 	private JTextField telefoneInput;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -78,39 +80,37 @@ public class Alunos extends JDialog {
 			for(int i = 0; i < emails.size(); i++) {
 				emailInput.setText(emailInput.getText()+ (i+1) + "°- " + emails.get(i) + " ");
 			}
-			{
-				idadeInput = new JTextField();
-				idadeInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-				idadeInput.setColumns(10);
-				idadeInput.setBounds(24, 195, 439, 41);
-				contentPanel.add(idadeInput);
-			}
-			{
-				JLabel idadeLabel = new JLabel("Idade:");
-				idadeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-				idadeLabel.setBounds(84, 170, 46, 14);
-				contentPanel.add(idadeLabel);
-				{
-					telefoneInput = new JTextField();
-					telefoneInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-					telefoneInput.setColumns(10);
-					telefoneInput.setBounds(24, 272, 439, 41);
-					contentPanel.add(telefoneInput);
-					for(int i = 0; i < telefones.size(); i++) {
-						telefoneInput.setText(telefoneInput.getText()+ (i+1) + "°- " + telefones.get(i) + " ");
-					}
-				}
-				{
-					JLabel telefoneLabel = new JLabel("Telefone:");
-					telefoneLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
-					telefoneLabel.setBounds(84, 247, 46, 14);
-					contentPanel.add(telefoneLabel);
-				}
-				for(int i = 0; i < idades.size(); i++) {
-					idadeInput.setText(idadeInput.getText()+ (i+1) + "°- " + idades.get(i) + " ");
-				}
+		}
+		
+		{
+			telefoneInput = new JTextField();
+			telefoneInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+			telefoneInput.setColumns(10);
+			telefoneInput.setBounds(24, 280, 439, 41);
+			contentPanel.add(telefoneInput);
+			for(int i = 0; i < telefones.size(); i++) {
+				telefoneInput.setText(telefoneInput.getText()+ (i+1) + "°- " + telefones.get(i) + " ");
 			}
 			
+			JLabel telefoneLabel = new JLabel("Telefone:");
+			telefoneLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+			telefoneLabel.setBounds(84, 247, 46, 14);
+			contentPanel.add(telefoneLabel);
+		}	
+		
+		{
+			JLabel idadeLabel = new JLabel("Idade:");
+			idadeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+			idadeLabel.setBounds(84, 170, 46, 14);
+			contentPanel.add(idadeLabel);
+			idadeInput = new JTextField();
+			idadeInput.setFont(new Font("Ubuntu", Font.PLAIN, 11));
+			idadeInput.setColumns(10);
+			idadeInput.setBounds(24, 195, 439, 41);
+			contentPanel.add(idadeInput);
+			for(int i = 0; i < idades.size(); i++) {
+				idadeInput.setText(idadeInput.getText()+ (i+1) + " | " + idades.get(i) + " ");
+			}
 		}
 		setLocationRelativeTo(null);
 		{
