@@ -1,4 +1,4 @@
-package pacoteRevisao;
+package cadastroUsuario;
 
 //imports
 import java.awt.EventQueue;

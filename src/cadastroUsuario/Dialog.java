@@ -1,4 +1,4 @@
-package pacoteRevisao;
+package cadastroUsuario;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
