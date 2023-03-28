@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FormCadastro extends JDialog {
 
@@ -102,11 +104,39 @@ public class FormCadastro extends JDialog {
 		contentPanel.add(inputResenha);
 		
 		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\exit.png"));
 		btnSair.setBounds(425, 343, 103, 33);
 		contentPanel.add(btnSair);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for(int i = 0; i < 5; i++) {
+					Livro livro = new Livro(
+							inputTitulo.getText(), 
+							inputCategoria.getText(), 
+							inputAutor.getText(), 
+							inputAno.getText(), 
+							inputPagina.getText(),
+							inputResenha.getText()
+							);
+				}
+				
+				
+				inputTitulo.setText("");
+				inputCategoria.setText("");
+				inputAutor.setText("");
+				inputAno.setText("");
+				inputPagina.setText("");
+				inputResenha.setText("");
+				
+			}
+		});
 		btnCadastrar.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\new-file.png"));
 		btnCadastrar.setBounds(92, 343, 121, 33);
 		contentPanel.add(btnCadastrar);
