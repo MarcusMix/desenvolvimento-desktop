@@ -21,18 +21,18 @@ public class vet {
 		}
 		
 		
-		//encontrar um valor usando pesquisa binária
-		Arrays.sort(numeros);
-		int posicao = Arrays.binarySearch(numeros, 9);
-		System.out.println("Posição do número 9: ");
-		System.out.println(posicao);
-		
-		
 		//colocando em ordem
 		Arrays.sort(numeros);
 		for(int valor: numeros) {
 			System.out.println("Números em ordem (do menor para o maior): " + valor);
 		}
+		
+		
+		//encontrar um valor usando pesquisa binária
+		int posicao = Arrays.binarySearch(numeros, 9);
+		System.out.println("Posição do número 9: ");
+		System.out.println(posicao);
+		
 		
 		//array com 200 zeros
 		int arrayVazio[] = new int[200];
