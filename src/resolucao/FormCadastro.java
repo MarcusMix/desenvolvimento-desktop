@@ -1,5 +1,8 @@
 package resolucao;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -31,8 +34,6 @@ public class FormCadastro extends JDialog {
 			FormCadastro dialog = new FormCadastro();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-			dialog.setLocationRelativeTo(null);
-			dialog.setResizable(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,6 +49,8 @@ public class FormCadastro extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		JLabel lblTitulo = new JLabel("Título");
 		lblTitulo.setBounds(26, 33, 46, 14);
@@ -106,7 +109,7 @@ public class FormCadastro extends JDialog {
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FormCadastro.this.dispose();
 			}
 		});
 		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\exit.png"));
@@ -115,31 +118,61 @@ public class FormCadastro extends JDialog {
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for(int i = 0; i < 5; i++) {
-					Livro livro = new Livro(
-							inputTitulo.getText(), 
-							inputCategoria.getText(), 
-							inputAutor.getText(), 
-							inputAno.getText(), 
-							inputPagina.getText(),
-							inputResenha.getText()
-							);
-				}
-				
-				
+			public void actionPerformed(ActionEvent e) {	
 				inputTitulo.setText("");
 				inputCategoria.setText("");
 				inputAutor.setText("");
 				inputAno.setText("");
 				inputPagina.setText("");
 				inputResenha.setText("");
-				
 			}
 		});
 		btnCadastrar.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\new-file.png"));
 		btnCadastrar.setBounds(92, 343, 121, 33);
 		contentPanel.add(btnCadastrar);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(inputTitulo.getText().isBlank()) {
+					return;
+				} else if (inputCategoria.getText().isBlank()) {
+					DialogMessage message = new DialogMessage("Campo categoria vazio!");
+					return;
+				} else if (inputAutor.getText().isBlank()) {
+					DialogMessage message = new DialogMessage("Campo autor vazio!");
+					return;
+				} else if(inputAno.getText().isBlank()) {
+					DialogMessage message = new DialogMessage("Campo ano vazio!");
+					return;
+				} else if (inputPagina.getText().isBlank()) {
+					DialogMessage message = new DialogMessage("Campo página vazio");
+					return;
+				} else if (inputResenha.getText().isBlank()) {
+					DialogMessage message = new DialogMessage("Campo resenha vazio");
+					return;
+				} else {
+					try {
+						FileWriter fw = new FileWriter("C:/Users/vini6/Documents/ADS/Desenvolvimento-desktop/workspace-desktop/files/arquivo.txt", true);
+						BufferedWriter bw = new BufferedWriter(fw);
+						bw.write((String.format("%-20s", inputTitulo.getText())));
+						bw.write((String.format("%-20s", inputCategoria.getText())));
+						bw.write((String.format("%-20s", inputAutor.getText())));
+						bw.write((String.format("%-8s", inputAno.getText())));
+						bw.write((String.format("%-8s", inputPagina.getText())));
+						bw.write((String.format("%-200s", inputResenha.getText())));
+						System.out.println("Tudo certo!");
+						bw.newLine();
+						bw.close();
+					} catch (IOException error) {
+						System.out.println("Erro ao adicionar arquivo: " + error.getMessage());
+					}
+				}
+			}
+		});
+		btnSalvar.setBounds(255, 343, 121, 33);
+		contentPanel.add(btnSalvar);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
