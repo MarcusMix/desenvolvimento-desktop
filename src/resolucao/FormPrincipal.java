@@ -40,12 +40,10 @@ public class FormPrincipal extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
 	 */
 	public FormPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 350);
-		
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -55,6 +53,12 @@ public class FormPrincipal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cadastrar");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FormCadastro cadastro = new FormCadastro();
+				cadastro.setVisible(true);				
+			}
+		});
 		mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\new-file.png"));
 		mnNewMenu.add(mntmNewMenuItem);
 		
