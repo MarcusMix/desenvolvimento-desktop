@@ -128,10 +128,11 @@ public class FormCadastro extends JDialog {
 			}
 		});
 		btnCadastrar.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\new-file.png"));
-		btnCadastrar.setBounds(92, 343, 121, 33);
+		btnCadastrar.setBounds(26, 343, 121, 33);
 		contentPanel.add(btnCadastrar);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\save.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -171,7 +172,7 @@ public class FormCadastro extends JDialog {
 				}
 			}
 		});
-		btnSalvar.setBounds(255, 343, 121, 33);
+		btnSalvar.setBounds(231, 343, 121, 33);
 		contentPanel.add(btnSalvar);
 		{
 			JPanel buttonPane = new JPanel();
