@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Panel;
 import java.awt.SystemColor;
+import java.awt.Color;
+import javax.swing.JEditorPane;
 
 public class FormPesquisa extends JDialog {
 
@@ -57,64 +59,73 @@ public class FormPesquisa extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
+	
+		
+		JLabel lblNewLabel = new JLabel("Dados do livro");
+		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setBackground(Color.BLACK);
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		lblNewLabel.setBounds(196, 79, 152, 46);
+		contentPanel.add(lblNewLabel);
+		
+		JLabel lblResenha = new JLabel("Resenha");
+		lblResenha.setBounds(110, 338, 56, 14);
+		contentPanel.add(lblResenha);
+		
+		inputCategoria = new JTextField();
+		inputCategoria.setColumns(10);
+		inputCategoria.setBounds(110, 139, 320, 20);
+		contentPanel.add(inputCategoria);
+		
+		JTextArea inputResenha = new JTextArea();
+		inputResenha.setLineWrap(true);
+		inputResenha.setBounds(110, 363, 320, 123);
+		contentPanel.add(inputResenha);
+		
 		JLabel lblPesquisarLivros = new JLabel("Pesquisar livros");
 		lblPesquisarLivros.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblPesquisarLivros.setBounds(196, 0, 152, 46);
+		lblPesquisarLivros.setBounds(196, 0, 152, 39);
 		contentPanel.add(lblPesquisarLivros);
 		
 		JLabel lblTitulo = new JLabel("Título do livro");
-		lblTitulo.setBounds(110, 49, 103, 14);
+		lblTitulo.setBounds(109, 50, 103, 14);
 		contentPanel.add(lblTitulo);
 		
 		inputTitulo = new JTextField();
-		inputTitulo.setBounds(206, 41, 239, 33);
+		inputTitulo.setBounds(196, 40, 249, 33);
 		contentPanel.add(inputTitulo);
 		inputTitulo.setColumns(10);
 		
 		JLabel lblCategoria = new JLabel("Categoria");
-		lblCategoria.setBounds(110, 111, 56, 14);
+		lblCategoria.setBounds(110, 115, 56, 14);
 		contentPanel.add(lblCategoria);
 		
-		inputCategoria = new JTextField();
-		inputCategoria.setColumns(10);
-		inputCategoria.setBounds(110, 133, 320, 20);
-		contentPanel.add(inputCategoria);
-		
 		JLabel lblAutor = new JLabel("Autor");
-		lblAutor.setBounds(110, 159, 56, 14);
+		lblAutor.setBounds(110, 170, 56, 14);
 		contentPanel.add(lblAutor);
 		
 		inputAutor = new JTextField();
 		inputAutor.setColumns(10);
-		inputAutor.setBounds(110, 184, 320, 20);
+		inputAutor.setBounds(110, 195, 320, 20);
 		contentPanel.add(inputAutor);
 		
 		JLabel lblAno = new JLabel("Ano");
-		lblAno.setBounds(110, 215, 56, 14);
+		lblAno.setBounds(110, 226, 56, 14);
 		contentPanel.add(lblAno);
 		
 		inputAno = new JTextField();
 		inputAno.setColumns(10);
-		inputAno.setBounds(110, 237, 56, 20);
+		inputAno.setBounds(110, 251, 56, 20);
 		contentPanel.add(inputAno);
 		
 		JLabel lblPginas = new JLabel("Páginas");
-		lblPginas.setBounds(110, 265, 56, 14);
+		lblPginas.setBounds(110, 282, 56, 14);
 		contentPanel.add(lblPginas);
 		
 		inputPagina = new JTextField();
 		inputPagina.setColumns(10);
-		inputPagina.setBounds(110, 282, 56, 20);
+		inputPagina.setBounds(110, 307, 56, 20);
 		contentPanel.add(inputPagina);
-		
-		JLabel lblResenha = new JLabel("Resenha");
-		lblResenha.setBounds(110, 313, 56, 14);
-		contentPanel.add(lblResenha);
-		
-		JTextArea inputResenha = new JTextArea();
-		inputResenha.setLineWrap(true);
-		inputResenha.setBounds(110, 338, 320, 108);
-		contentPanel.add(inputResenha);
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
@@ -123,15 +134,8 @@ public class FormPesquisa extends JDialog {
 			}
 		});
 		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\exit.png"));
-		btnSair.setBounds(425, 466, 103, 33);
+		btnSair.setBounds(459, 453, 103, 33);
 		contentPanel.add(btnSair);
-		
-	
-		
-		JLabel lblNewLabel = new JLabel("Dados do livro");
-		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblNewLabel.setBounds(196, 65, 152, 46);
-		contentPanel.add(lblNewLabel);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
@@ -141,35 +145,28 @@ public class FormPesquisa extends JDialog {
 			try (BufferedReader br = new BufferedReader(new FileReader("C:/Users/vini6/Documents/ADS/Desenvolvimento-desktop/workspace-desktop/files/arquivo.txt"))){
 				String linha;
 				while ((linha = br.readLine()) != null) {
-//					if(inputTitulo.getText().equals(linha.su))
 						String titulo = linha.substring(0, 19).trim();
-						String categoria = linha.substring(20, 39).trim();
-						String autor = linha.substring(40, 59).trim();
-						String ano = linha.substring(60, 64).trim();
-						String pagina = linha.substring(64, 67).trim();
-						String resenha = linha.substring(68, 200).trim();
-						inputCategoria.setText(categoria);
-						inputAutor.setText(autor);
-						inputAno.setText(ano);
-						inputPagina.setText(pagina);
-						inputResenha.setText(resenha);
-				}
-			
-
+						if(inputTitulo.getText().equals(titulo)) {
+							String categoria = linha.substring(20, 39).trim();
+							String autor = linha.substring(40, 59).trim();
+							String ano = linha.substring(60, 64).trim();
+							String pagina = linha.substring(64, 67).trim();
+							String resenha = linha.substring(68, 200).trim();
+							inputCategoria.setText(categoria);
+							inputAutor.setText(autor);
+							inputAno.setText(ano);
+							inputPagina.setText(pagina);
+							inputResenha.setText(resenha);
+						}
+							
+					}
 			} catch (IOException error) {
 				System.out.println("Erro ao ler arquivo: " + error.getMessage());
 			}
-			
-			
 		}	
 		});
 		btnPesquisar.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\search.png"));
 		btnPesquisar.setBounds(441, 40, 121, 33);
 		contentPanel.add(btnPesquisar);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-		}
 	}
 }
