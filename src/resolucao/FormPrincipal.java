@@ -63,6 +63,12 @@ public class FormPrincipal extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Pesquisar");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FormPesquisa pesquisa = new FormPesquisa();
+				pesquisa.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_1.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\search.png"));
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
