@@ -16,6 +16,8 @@ import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class FormCadastro extends JDialog {
 
@@ -44,7 +46,7 @@ public class FormCadastro extends JDialog {
 	 */
 	public FormCadastro() {
 		setModal(true);
-		setBounds(100, 100, 567, 433);
+		setBounds(0, -15, 567, 433);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -106,13 +108,13 @@ public class FormCadastro extends JDialog {
 		inputResenha.setBounds(92, 179, 320, 144);
 		contentPanel.add(inputResenha);
 		
-		JButton btnSair = new JButton("Sair");
+		JButton btnSair = new JButton("Voltar");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormCadastro.this.dispose();
 			}
 		});
-		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\exit.png"));
+		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\back.png"));
 		btnSair.setBounds(425, 343, 103, 33);
 		contentPanel.add(btnSair);
 		
@@ -166,6 +168,9 @@ public class FormCadastro extends JDialog {
 						System.out.println("Tudo certo!");
 						bw.newLine();
 						bw.close();
+						DialogMessage message = new DialogMessage("Cadastrado com sucesso!");
+						message.setLocationRelativeTo(null);
+						message.setVisible(true);
 					} catch (IOException error) {
 						System.out.println("Erro ao adicionar arquivo: " + error.getMessage());
 					}
@@ -174,6 +179,13 @@ public class FormCadastro extends JDialog {
 		});
 		btnSalvar.setBounds(231, 343, 121, 33);
 		contentPanel.add(btnSalvar);
+		
+		JLabel lblCadastro = new JLabel("Cadastrar novo livro");
+		lblCadastro.setBackground(Color.WHITE);
+		lblCadastro.setForeground(Color.BLACK);
+		lblCadastro.setFont(new Font("Ubuntu", Font.PLAIN, 22));
+		lblCadastro.setBounds(153, 0, 229, 26);
+		contentPanel.add(lblCadastro);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
