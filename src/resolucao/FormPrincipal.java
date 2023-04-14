@@ -1,4 +1,4 @@
-package resolucao;
+	package resolucao;
 
 import java.awt.EventQueue;
 
@@ -92,7 +92,7 @@ public class FormPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Cadastro de Livros (48) 9999-9999");
+		JLabel lblNewLabel_1 = new JLabel("Cadastro de Livros, desde 1999 ©");
 		lblNewLabel_1.setBounds(212, 0, 194, 19);
 		panel.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Open Sans", Font.PLAIN, 10));
@@ -104,9 +104,9 @@ public class FormPrincipal extends JFrame {
 		lblNewLabel.setBounds(0, 0, 291, 270);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("Cadastro de Livros");
-		lblNewLabel_2.setFont(new Font("Yu Gothic UI", Font.PLAIN, 31));
-		lblNewLabel_2.setBounds(311, 0, 273, 59);
+		JLabel lblNewLabel_2 = new JLabel("Biblioteca de Livros");
+		lblNewLabel_2.setFont(new Font("Ubuntu Condensed", Font.PLAIN, 31));
+		lblNewLabel_2.setBounds(323, 0, 231, 59);
 		contentPane.add(lblNewLabel_2);
 	}
 }
