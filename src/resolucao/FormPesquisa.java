@@ -51,7 +51,7 @@ public class FormPesquisa extends JDialog {
 	 */
 	public FormPesquisa() {
 		setModal(true);
-		setBounds(100, 100, 615, 556);
+		setBounds(100, 100, 615, 537);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -92,6 +92,7 @@ public class FormPesquisa extends JDialog {
 		contentPanel.add(lblTitulo);
 		
 		inputTitulo = new JTextField();
+		inputTitulo.setFont(new Font("Verdana", Font.PLAIN, 16));
 		inputTitulo.setBounds(196, 40, 249, 33);
 		contentPanel.add(inputTitulo);
 		inputTitulo.setColumns(10);
@@ -127,14 +128,14 @@ public class FormPesquisa extends JDialog {
 		inputPagina.setBounds(110, 307, 56, 20);
 		contentPanel.add(inputPagina);
 		
-		JButton btnSair = new JButton("Sair");
+		JButton btnSair = new JButton("Voltar");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormPesquisa.this.dispose();
 			}
 		});
-		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\exit.png"));
-		btnSair.setBounds(459, 453, 103, 33);
+		btnSair.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\back.png"));
+		btnSair.setBounds(459, 454, 103, 33);
 		contentPanel.add(btnSair);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -150,8 +151,8 @@ public class FormPesquisa extends JDialog {
 							String categoria = linha.substring(20, 39).trim();
 							String autor = linha.substring(40, 59).trim();
 							String ano = linha.substring(60, 64).trim();
-							String pagina = linha.substring(64, 67).trim();
-							String resenha = linha.substring(68, 200).trim();
+							String pagina = linha.substring(64, 71).trim();
+							String resenha = linha.substring(72, linha.length()).trim();
 							inputCategoria.setText(categoria);
 							inputAutor.setText(autor);
 							inputAno.setText(ano);
