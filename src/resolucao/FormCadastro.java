@@ -40,10 +40,20 @@ public class FormCadastro extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * Create the dialog.
-	 */
+	
+	//invocar janela confirmação
+	public void handleWindowMessage(String text) {
+		DialogMessageError message = new DialogMessageError(text);
+		message.setLocationRelativeTo(null);
+		message.setVisible(true);
+	}
+	
+	public void handleWindowMessageSucess(String text) {
+		DialogMessageSucess message = new DialogMessageSucess(text);
+		message.setLocationRelativeTo(null);
+		message.setVisible(true);
+	}
+	
 	public FormCadastro() {
 		setModal(true);
 		setBounds(0, -15, 567, 433);
@@ -137,23 +147,23 @@ public class FormCadastro extends JDialog {
 		btnSalvar.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\save.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				if(inputTitulo.getText().isBlank()) {
+					handleWindowMessage("Campo texto vazio!");
 					return;
 				} else if (inputCategoria.getText().isBlank()) {
-					DialogMessage message = new DialogMessage("Campo categoria vazio!");
+					handleWindowMessage("Campo categoria vazio!");
 					return;
 				} else if (inputAutor.getText().isBlank()) {
-					DialogMessage message = new DialogMessage("Campo autor vazio!");
+					handleWindowMessage("Campo autor vazio!");
 					return;
 				} else if(inputAno.getText().isBlank()) {
-					DialogMessage message = new DialogMessage("Campo ano vazio!");
+					handleWindowMessage("Campo ano vazio!");
 					return;
 				} else if (inputPagina.getText().isBlank()) {
-					DialogMessage message = new DialogMessage("Campo página vazio");
+					handleWindowMessage("Campo página vazio!");
 					return;
 				} else if (inputResenha.getText().isBlank()) {
-					DialogMessage message = new DialogMessage("Campo resenha vazio");
+					handleWindowMessage("Campo resenha vazio!");
 					return;
 				} else {
 					try {
@@ -168,9 +178,7 @@ public class FormCadastro extends JDialog {
 						System.out.println("Tudo certo!");
 						bw.newLine();
 						bw.close();
-						DialogMessage message = new DialogMessage("Cadastrado com sucesso!");
-						message.setLocationRelativeTo(null);
-						message.setVisible(true);
+						handleWindowMessageSucess("Cadastrado com sucesso!");
 					} catch (IOException error) {
 						System.out.println("Erro ao adicionar arquivo: " + error.getMessage());
 					}
