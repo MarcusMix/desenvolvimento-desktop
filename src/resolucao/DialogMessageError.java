@@ -11,44 +11,46 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
-public class DialogMessage extends JDialog {
+public class DialogMessageError extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		try {
-			DialogMessage dialog = new DialogMessage("");
+			DialogMessageError dialog = new DialogMessageError("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			dialog.setResizable(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Create the dialog.
-	 * 
-	 */
-	public DialogMessage(String message) {
+	public DialogMessageError(String message) {
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 341, 181);
+		setBounds(100, 100, 391, 256);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+		setModal(true);
+		setLocationRelativeTo(null);
 		
 		JLabel messageText = new JLabel(message);
+		messageText.setHorizontalAlignment(SwingConstants.CENTER);
 		messageText.setFont(new Font("Ubuntu", Font.BOLD, 22));
-		messageText.setBounds(10, 29, 305, 69);
+		messageText.setBounds(0, 21, 375, 69);
 		contentPanel.add(messageText);
+		{
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\aviso.png"));
+			lblNewLabel.setBounds(119, 73, 135, 111);
+			contentPanel.add(lblNewLabel);
+		}
 		
 		setTitle("Aviso!");
-		setVisible(true);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -57,7 +59,7 @@ public class DialogMessage extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						DialogMessage.this.dispose();
+						DialogMessageError.this.dispose();
 					}
 				});
 				okButton.setActionCommand("OK");
