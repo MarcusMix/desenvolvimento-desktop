@@ -16,14 +16,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class FormPrincipal extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,12 +37,11 @@ public class FormPrincipal extends JFrame {
 		});
 	}
 
-	/**
-	 */
+	
 	public FormPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 350);
-		
+		setTitle("Biblioteca Virtual");
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -64,7 +61,7 @@ public class FormPrincipal extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Pesquisar");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	
 				FormPesquisa pesquisa = new FormPesquisa();
 				pesquisa.setVisible(true);
 			}
@@ -92,21 +89,22 @@ public class FormPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Cadastro de Livros, desde 1999 ©");
-		lblNewLabel_1.setBounds(212, 0, 194, 19);
+		JLabel lblNewLabel_1 = new JLabel("Cadastro de Livros, All rights reserved ©");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 584, 19);
 		panel.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Open Sans", Font.PLAIN, 10));
 		lblNewLabel_1.setForeground(Color.WHITE);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBackground(Color.BLACK);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\shelf 1.png"));
-		lblNewLabel.setBounds(0, 0, 291, 270);
-		contentPane.add(lblNewLabel);
+		JLabel h1 = new JLabel("Biblioteca de Livros");
+		h1.setHorizontalAlignment(SwingConstants.CENTER);
+		h1.setFont(new Font("Ubuntu Condensed", Font.PLAIN, 31));
+		h1.setBounds(0, 0, 584, 59);
+		contentPane.add(h1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Biblioteca de Livros");
-		lblNewLabel_2.setFont(new Font("Ubuntu Condensed", Font.PLAIN, 31));
-		lblNewLabel_2.setBounds(323, 0, 231, 59);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\vini6\\Documents\\ADS\\Desenvolvimento-desktop\\workspace-desktop\\images\\livros.png"));
+		lblNewLabel_3.setBounds(194, 70, 200, 181);
+		contentPane.add(lblNewLabel_3);
 	}
 }
