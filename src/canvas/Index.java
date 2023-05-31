@@ -9,6 +9,8 @@ import java.awt.FlowLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Index extends JFrame {
 
@@ -23,6 +25,7 @@ public class Index extends JFrame {
 	private JMenu mnPhone;
 	private JMenuItem subListAdress;
 	private JMenuItem subRegisterAdress;
+	private JPanel PanelRegisterClient;
 
 	/**
 	 * Launch the application.
@@ -54,6 +57,13 @@ public class Index extends JFrame {
 		menuBar.add(mnClient);
 		
 		subRegisterClient = new JMenuItem("Cadastrar");
+		subRegisterClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelRegisterClient registerClient = new PanelRegisterClient();
+				setContentPane(registerClient);
+				revalidate();
+			}
+		});
 		mnClient.add(subRegisterClient);
 		
 		subListClient = new JMenuItem("Listagem");
