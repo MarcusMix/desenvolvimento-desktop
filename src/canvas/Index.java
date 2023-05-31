@@ -67,6 +67,13 @@ public class Index extends JFrame {
 		mnClient.add(subRegisterClient);
 		
 		subListClient = new JMenuItem("Listagem");
+		subListClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelListClient listClient = new PanelListClient();
+				setContentPane(listClient);
+				revalidate();
+			}
+		});
 		mnClient.add(subListClient);
 		
 		mnAdress = new JMenu("Endereço");
