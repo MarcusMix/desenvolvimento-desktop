@@ -13,6 +13,16 @@ import javax.swing.JMenuItem;
 public class Index extends JFrame {
 
 	private JPanel contentPane;
+	private JMenuBar menuBar;
+	private JMenu mnClient;
+	private JMenuItem subRegisterClient;
+	private JMenuItem subListClient;
+	private JMenu mnAdress;
+	private JMenuItem subListPhone;
+	private JMenuItem subRegisterPhone;
+	private JMenu mnPhone;
+	private JMenuItem subListAdress;
+	private JMenuItem subRegisterAdress;
 
 	/**
 	 * Launch the application.
@@ -37,34 +47,34 @@ public class Index extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnClient = new JMenu("Cliente");
+		mnClient = new JMenu("Cliente");
 		menuBar.add(mnClient);
 		
-		JMenuItem subRegisterClient = new JMenuItem("Cadastrar");
+		subRegisterClient = new JMenuItem("Cadastrar");
 		mnClient.add(subRegisterClient);
 		
-		JMenuItem subListClient = new JMenuItem("Listagem");
+		subListClient = new JMenuItem("Listagem");
 		mnClient.add(subListClient);
 		
-		JMenu mnAdress = new JMenu("Endereço");
+		mnAdress = new JMenu("Endereço");
 		menuBar.add(mnAdress);
 		
-		JMenuItem subRegisterAdress = new JMenuItem("Cadastrar");
+		subRegisterAdress = new JMenuItem("Cadastrar");
 		mnAdress.add(subRegisterAdress);
 		
-		JMenuItem subListAdress = new JMenuItem("Listagem");
+		subListAdress = new JMenuItem("Listagem");
 		mnAdress.add(subListAdress);
 		
-		JMenu mnPhone = new JMenu("Telefone");
+		mnPhone = new JMenu("Telefone");
 		menuBar.add(mnPhone);
 		
-		JMenuItem subRegisterPhone = new JMenuItem("Cadastrar");
+		subRegisterPhone = new JMenuItem("Cadastrar");
 		mnPhone.add(subRegisterPhone);
 		
-		JMenuItem subListPhone = new JMenuItem("Listagem");
+		subListPhone = new JMenuItem("Listagem");
 		mnPhone.add(subListPhone);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
