@@ -1,23 +1,23 @@
 package canvas;
 
 import javax.swing.JPanel;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class PanelRegisterClient extends JPanel {
 	private JTextField inputName;
 	private JTextField inputCPF;
 	private JTextField inputEmail;
+	private JLabel lblCpf;
+	private JLabel lblEmail;
+	private JButton btnRegister;
 
-	/**
-	 * Create the panel.
-	 */
+	
 	public PanelRegisterClient() {
+		setBackground(new Color(255, 160, 122));
 		setLayout(null);
 		
 		JLabel lblClient = new JLabel("Cadastrar Cliente");
@@ -39,7 +39,7 @@ public class PanelRegisterClient extends JPanel {
 		inputCPF.setBounds(28, 150, 86, 20);
 		add(inputCPF);
 		
-		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(29, 133, 46, 14);
 		add(lblCpf);
 		
@@ -48,12 +48,12 @@ public class PanelRegisterClient extends JPanel {
 		inputEmail.setBounds(28, 193, 86, 20);
 		add(inputEmail);
 		
-		JLabel lblEmail = new JLabel("E-mail");
+		lblEmail = new JLabel("E-mail");
 		lblEmail.setBounds(29, 176, 46, 14);
 		add(lblEmail);
 		
-		JButton btnRegister = new JButton("Cadastrar");
-		btnRegister.setBounds(199, 149, 89, 23);
+		btnRegister = new JButton("Cadastrar");
+		btnRegister.setBounds(178, 149, 103, 23);
 		add(btnRegister);
 
 	}
